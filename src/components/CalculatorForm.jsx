@@ -7,18 +7,18 @@ export default function CalculatorForm({ onCalculate }) {
   const [rentValue, setRentValue] = useState(2000); // 0.5% default of 400.000
   const [downPayment, setDownPayment] = useState(80000);
   const [additionalCosts, setAdditionalCosts] = useState(20000); // 5% default of 400.000
-  
+
   const [annualAppreciation, setAnnualAppreciation] = useState(6.04); // FipeZAP Média 5 Anos
   const [annualInflation, setAnnualInflation] = useState(5.11); // IGP-M Média 5 Anos
   const [annualInterestRate, setAnnualInterestRate] = useState(10.50); // Financiamento Média 5 Anos
   const [annualInvestmentRate, setAnnualInvestmentRate] = useState(12.35); // Selic Média 5 Anos
-  
-  const [termMonths, setTermMonths] = useState(360);
+
+  const [termMonths, setTermMonths] = useState(420);
 
   const handlePropertyChange = (value) => {
     const numericValue = value ? Number(value) : 0;
     setPropertyValue(numericValue);
-    
+
     // Auto-preenchimento
     setRentValue(numericValue * 0.005); // Aluguel: 0.5%
     setAdditionalCosts(numericValue * 0.05); // Custos Adicionais: 5%
@@ -46,15 +46,15 @@ export default function CalculatorForm({ onCalculate }) {
   return (
     <form onSubmit={handleSubmit} className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-2xl shadow-xl">
       <div className="flex items-center justify-between mb-8 gap-3 bg-black/30 p-1.5 rounded-lg border border-white/5">
-        <button 
-          type="button" 
+        <button
+          type="button"
           onClick={() => setMethod('SAC')}
           className={`flex-1 py-2 rounded-md text-sm transition-all ${method === 'SAC' ? 'bg-[#00bfa5]/20 text-[#00bfa5] font-medium' : 'text-gray-400 font-light hover:text-white hover:bg-white/5'}`}
         >
           Amortização SAC
         </button>
-        <button 
-          type="button" 
+        <button
+          type="button"
           onClick={() => setMethod('PRICE')}
           className={`flex-1 py-2 rounded-md text-sm transition-all ${method === 'PRICE' ? 'bg-[#00bfa5]/20 text-[#00bfa5] font-medium' : 'text-gray-400 font-light hover:text-white hover:bg-white/5'}`}
         >
@@ -179,7 +179,7 @@ export default function CalculatorForm({ onCalculate }) {
           </div>
         </div>
       </div>
-      
+
       <div className="mt-8 pt-6 border-t border-white/10 flex justify-end">
         <button type="submit" className="glass-btn text-sm font-medium w-full md:w-auto px-8 py-2.5">
           Simular Cenários
