@@ -6,7 +6,7 @@ export default function CalculatorForm({ onCalculate }) {
   const [propertyValue, setPropertyValue] = useState(400000);
   const [rentValue, setRentValue] = useState(2000); // 0.5% default of 400.000
   const [downPayment, setDownPayment] = useState(80000);
-  const [additionalCosts, setAdditionalCosts] = useState(20000); // 5% default of 400.000
+  const [additionalCosts, setAdditionalCosts] = useState(16000); // 4% default of 400.000
 
   const [annualAppreciation, setAnnualAppreciation] = useState(6.04); // FipeZAP Média 5 Anos
   const [annualInflation, setAnnualInflation] = useState(5.11); // IGP-M Média 5 Anos
@@ -143,7 +143,7 @@ export default function CalculatorForm({ onCalculate }) {
             <div>
               <label className={labelClass}>
                 <span>Custos Extras (R$)</span>
-                <span className="text-[10px] text-blue-400/80" title="ITBI, Cartório, Corretor (~5%)">Auto: 5%</span>
+                <span className="text-[10px] text-blue-400/80" title="ITBI, Cartório, Corretor (~4%)">Auto: 4%</span>
               </label>
               <CurrencyInput
                 id="additionalCosts"
