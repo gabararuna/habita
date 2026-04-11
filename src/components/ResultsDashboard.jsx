@@ -35,7 +35,7 @@ export default function ResultsDashboard({ results }) {
               {isRentBetter ? "Alugar e Investir a diferença é mais vantajoso" : "Comprar Financiado é mais vantajoso"}
             </h2>
             <p className="text-gray-400 text-sm md:text-base font-light">
-              No final de <strong className="text-gray-200 font-medium">{inputs.termMonths} meses</strong> ({(inputs.termMonths/12).toFixed(1)} anos), a diferença de patrimônio líquido será de <span className="font-medium text-white">{formatCurrency(Math.abs(rentFinalWealth - buyFinalWealth))}</span> em favor da opção campeã.
+              No final de <strong className="text-gray-200 font-medium">{inputs.termMonths} meses</strong> ({(inputs.termMonths/12).toFixed(0)} anos), a diferença de patrimônio líquido será de <span className="font-medium text-white">{formatCurrency(Math.abs(rentFinalWealth - buyFinalWealth))}</span> em favor da opção campeã.
             </p>
           </div>
         </div>
