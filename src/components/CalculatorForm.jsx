@@ -20,10 +20,8 @@ export default function CalculatorForm({ onCalculate }) {
   const handlePropertyChange = (value) => {
     const numericValue = value ? Number(value) : 0;
     setPropertyValue(numericValue);
-
-    // Auto-preenchimento
-    setRentValue(numericValue * 0.005); // Aluguel: 0.5%
-    setAdditionalCosts(numericValue * 0.05); // Custos Adicionais: 5%
+    setRentValue(numericValue * 0.005);
+    setAdditionalCosts(numericValue * 0.05);
   };
 
   const handleSubmit = (e) => {
@@ -49,30 +47,15 @@ export default function CalculatorForm({ onCalculate }) {
 
   return (
     <form onSubmit={handleSubmit} className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-2xl shadow-xl">
-      <div className="flex items-center justify-between mb-8 gap-3 bg-black/30 p-1.5 rounded-lg border border-white/5">
-        <button
-          type="button"
-          onClick={() => setMethod('SAC')}
-          className={`flex-1 py-2 rounded-md text-sm transition-all ${method === 'SAC' ? 'bg-[#00bfa5]/20 text-[#00bfa5] font-medium' : 'text-gray-400 font-light hover:text-white hover:bg-white/5'}`}
-        >
-          Amortização SAC
-        </button>
-        <button
-          type="button"
-          onClick={() => setMethod('PRICE')}
-          className={`flex-1 py-2 rounded-md text-sm transition-all ${method === 'PRICE' ? 'bg-[#00bfa5]/20 text-[#00bfa5] font-medium' : 'text-gray-400 font-light hover:text-white hover:bg-white/5'}`}
-        >
-          Tabela PRICE
-        </button>
-      </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-        {/* Info do Imóvel */}
-        <div className="space-y-4">
-          <h3 className="text-lg font-light text-white mb-5 border-b border-white/10 pb-3 flex items-center gap-2">
+
+        {/* Coluna Esquerda — Imóvel & Aluguel */}
+        <div className="flex flex-col space-y-4">
+          <h3 className="text-lg font-light text-white border-b border-white/10 pb-3 flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#00bfa5]"></span>
             Dados do Imóvel & Aluguel
           </h3>
+
           <div>
             <label className={labelClass}>Valor do Imóvel à Vista (R$)</label>
             <CurrencyInput
@@ -88,6 +71,7 @@ export default function CalculatorForm({ onCalculate }) {
               className={inputClass}
             />
           </div>
+
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className={labelClass}>
@@ -125,18 +109,23 @@ export default function CalculatorForm({ onCalculate }) {
               />
             </div>
           </div>
-          <div className="flex items-center gap-2.5 mt-0.5">
-            <input
-              type="checkbox"
-              id="condoIncluded"
-              checked={condoIncluded}
-              onChange={(e) => setCondoIncluded(e.target.checked)}
-              className="w-3.5 h-3.5 rounded border border-white/20 bg-white/5 accent-[#00bfa5] cursor-pointer"
-            />
-            <label htmlFor="condoIncluded" className="text-xs text-gray-400 font-light cursor-pointer select-none">
-              Condomínio já incluso no valor do aluguel
-            </label>
-          </div>
+
+          {/* Toggle switch moderno */}
+          <button
+            type="button"
+            role="switch"
+            aria-checked={condoIncluded}
+            onClick={() => setCondoIncluded(!condoIncluded)}
+            className="w-full flex items-center justify-between px-3 py-2.5 rounded-md bg-white/5 border border-white/10 hover:bg-white/[0.08] transition-colors cursor-pointer group"
+          >
+            <span className="text-xs text-gray-400 font-light select-none group-hover:text-gray-300 transition-colors">
+              Condomínio já incluso no aluguel
+            </span>
+            <div className={`relative inline-flex h-5 w-9 flex-shrink-0 items-center rounded-full transition-colors duration-200 ${condoIncluded ? 'bg-[#00bfa5]/70' : 'bg-white/15'}`}>
+              <span className={`inline-block h-3.5 w-3.5 rounded-full bg-white shadow-sm transition-transform duration-200 ${condoIncluded ? 'translate-x-[18px]' : 'translate-x-[3px]'}`} />
+            </div>
+          </button>
+
           <div>
             <label className={labelClass}>
               <span>Valorização (%)</span>
@@ -144,6 +133,7 @@ export default function CalculatorForm({ onCalculate }) {
             </label>
             <input type="number" step="0.01" className={inputClass} value={annualAppreciation} onChange={e => setAnnualAppreciation(e.target.value)} />
           </div>
+
           <div>
             <label className={labelClass}>
               <span>Inflação/Ano (%)</span>
@@ -153,12 +143,31 @@ export default function CalculatorForm({ onCalculate }) {
           </div>
         </div>
 
-        {/* Info de Financiamento */}
-        <div className="space-y-4">
-          <h3 className="text-lg font-light text-white mb-5 border-b border-white/10 pb-3 flex items-center gap-2">
+        {/* Coluna Direita — Financiamento & Investimento */}
+        <div className="flex flex-col space-y-4">
+          <h3 className="text-lg font-light text-white border-b border-white/10 pb-3 flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
             Financiamento & Investimento
           </h3>
+
+          {/* Toggle SAC / PRICE movido para dentro da seção */}
+          <div className="flex items-center gap-1.5 bg-black/30 p-1.5 rounded-lg border border-white/5">
+            <button
+              type="button"
+              onClick={() => setMethod('SAC')}
+              className={`flex-1 py-2 rounded-md text-sm transition-all ${method === 'SAC' ? 'bg-blue-500/20 text-blue-400 font-medium' : 'text-gray-400 font-light hover:text-white hover:bg-white/5'}`}
+            >
+              Amortização SAC
+            </button>
+            <button
+              type="button"
+              onClick={() => setMethod('PRICE')}
+              className={`flex-1 py-2 rounded-md text-sm transition-all ${method === 'PRICE' ? 'bg-blue-500/20 text-blue-400 font-medium' : 'text-gray-400 font-light hover:text-white hover:bg-white/5'}`}
+            >
+              Tabela PRICE
+            </button>
+          </div>
+
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className={labelClass}>Entrada Direta (R$)</label>
@@ -194,10 +203,12 @@ export default function CalculatorForm({ onCalculate }) {
               />
             </div>
           </div>
+
           <div>
             <label className={labelClass}>Prazo (Meses)</label>
             <input type="number" className={inputClass} value={termMonths} onChange={e => setTermMonths(e.target.value)} />
           </div>
+
           <div>
             <label className={labelClass}>
               <span>Taxa Financiamento (% a.a.)</span>
@@ -205,6 +216,7 @@ export default function CalculatorForm({ onCalculate }) {
             </label>
             <input type="number" step="0.01" className={inputClass} value={annualInterestRate} onChange={e => setAnnualInterestRate(e.target.value)} />
           </div>
+
           <div>
             <label className={labelClass}>
               <span>Rendimento Carteira (% a.a.)</span>
