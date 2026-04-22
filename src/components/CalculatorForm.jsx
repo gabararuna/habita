@@ -5,6 +5,8 @@ export default function CalculatorForm({ onCalculate }) {
   const [method, setMethod] = useState('SAC');
   const [propertyValue, setPropertyValue] = useState(400000);
   const [rentValue, setRentValue] = useState(2000); // 0.5% default of 400.000
+  const [condoValue, setCondoValue] = useState(0);
+  const [condoIncluded, setCondoIncluded] = useState(false);
   const [downPayment, setDownPayment] = useState(80000);
   const [additionalCosts, setAdditionalCosts] = useState(16000); // 4% default of 400.000
 
@@ -30,6 +32,8 @@ export default function CalculatorForm({ onCalculate }) {
       method,
       propertyValue: Number(propertyValue),
       rentValue: Number(rentValue),
+      condoValue: Number(condoValue),
+      condoIncluded,
       additionalCosts: Number(additionalCosts),
       annualAppreciation: Number(annualAppreciation) / 100,
       annualInflation: Number(annualInflation) / 100,
@@ -84,23 +88,54 @@ export default function CalculatorForm({ onCalculate }) {
               className={inputClass}
             />
           </div>
-          <div>
-            <label className={labelClass}>
-              <span>Valor do Aluguel Mensal (R$)</span>
-              <span className="text-[10px] text-[#00bfa5]/70" title="Auto-calculado usando 0.5%">0,5% Valor.Imv</span>
-            </label>
-            <CurrencyInput
-              id="rentValue"
-              name="rentValue"
-              placeholder="R$ 2.000"
-              value={rentValue}
-              decimalsLimit={0}
-              prefix="R$ "
-              groupSeparator="."
-              decimalSeparator=","
-              onValueChange={(value) => setRentValue(value || 0)}
-              className={inputClass}
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className={labelClass}>
+                <span>Aluguel Mensal (R$)</span>
+                <span className="text-[10px] text-[#00bfa5]/70" title="Auto-calculado usando 0.5%">0,5% Valor.Imv</span>
+              </label>
+              <CurrencyInput
+                id="rentValue"
+                name="rentValue"
+                placeholder="R$ 2.000"
+                value={rentValue}
+                decimalsLimit={0}
+                prefix="R$ "
+                groupSeparator="."
+                decimalSeparator=","
+                onValueChange={(value) => setRentValue(value || 0)}
+                className={inputClass}
+              />
+            </div>
+            <div>
+              <label className={labelClass}>
+                <span>Condomínio Mensal (R$)</span>
+              </label>
+              <CurrencyInput
+                id="condoValue"
+                name="condoValue"
+                placeholder="R$ 0"
+                value={condoValue}
+                decimalsLimit={0}
+                prefix="R$ "
+                groupSeparator="."
+                decimalSeparator=","
+                onValueChange={(value) => setCondoValue(value || 0)}
+                className={inputClass}
+              />
+            </div>
+          </div>
+          <div className="flex items-center gap-2.5 mt-0.5">
+            <input
+              type="checkbox"
+              id="condoIncluded"
+              checked={condoIncluded}
+              onChange={(e) => setCondoIncluded(e.target.checked)}
+              className="w-3.5 h-3.5 rounded border border-white/20 bg-white/5 accent-[#00bfa5] cursor-pointer"
             />
+            <label htmlFor="condoIncluded" className="text-xs text-gray-400 font-light cursor-pointer select-none">
+              Condomínio já incluso no valor do aluguel
+            </label>
           </div>
           <div>
             <label className={labelClass}>

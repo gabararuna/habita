@@ -2,6 +2,8 @@ export function runSimulation(inputs) {
   const {
     propertyValue,
     rentValue,
+    condoValue = 0,
+    condoIncluded = false,
     downPayment,
     additionalCosts,
     annualAppreciation,
@@ -59,20 +61,24 @@ export function runSimulation(inputs) {
     const rentStepYield = rentInvestment - prevRentInv;
 
     // 3. Compare Outlays and Invest the Difference
+    // Financing always pays parcela + condo; renting pays rent (which may already include condo)
+    const effectiveFin = pmt + condoValue;
+    const effectiveRent = condoIncluded ? currentRent : currentRent + condoValue;
+
     let finAporte = 0;
     let rentAporte = 0;
 
-    if (pmt > currentRent) {
-      rentAporte = pmt - currentRent;
+    if (effectiveFin > effectiveRent) {
+      rentAporte = effectiveFin - effectiveRent;
       rentInvestment += rentAporte;
-    } else if (currentRent > pmt) {
-      finAporte = currentRent - pmt;
+    } else if (effectiveRent > effectiveFin) {
+      finAporte = effectiveRent - effectiveFin;
       finInvestment += finAporte;
     }
 
     // Accumulate costs
-    finTotalPaid += pmt;
-    rentTotalPaid += currentRent;
+    finTotalPaid += effectiveFin;
+    rentTotalPaid += effectiveRent;
 
     // Property Appreciation
     currentPropertyValue = currentPropertyValue * (1 + appreciationRateM);
@@ -80,7 +86,9 @@ export function runSimulation(inputs) {
     // Save monthly snapshot
     monthlyFinancingList.push({
       month,
-      housingCost: pmt,
+      baseHousingCost: pmt,
+      condoCost: condoValue,
+      housingCost: effectiveFin,
       interestToBank: interest,
       debtBalance: finBalance,
       initialAccountBalance: prevFinInv,
@@ -90,10 +98,12 @@ export function runSimulation(inputs) {
       propertyValue: currentPropertyValue,
       totalPatrimony: currentPropertyValue + finInvestment - finBalance
     });
-    
+
     monthlyRentList.push({
       month,
-      housingCost: currentRent,
+      baseHousingCost: currentRent,
+      condoCost: condoIncluded ? 0 : condoValue,
+      housingCost: effectiveRent,
       interestToBank: 0,
       debtBalance: 0,
       initialAccountBalance: prevRentInv,

@@ -7,6 +7,8 @@ export default function EvolutionTable({ results }) {
 
   const formatCurrency = (val) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(val);
 
+  const { condoValue = 0, condoIncluded = false } = results.inputs || {};
+
   const monthlyFinancing = results.financing.monthlyList;
   const monthlyRent = results.renting.monthlyList;
 
@@ -42,7 +44,8 @@ export default function EvolutionTable({ results }) {
             <thead className="text-xs uppercase bg-black/60 text-gray-300 sticky top-0 z-20 backdrop-blur-xl">
               <tr>
                 <th className="px-6 py-4 font-medium whitespace-nowrap">Mês</th>
-                <th className="px-6 py-4 font-medium whitespace-nowrap">{activeTab === 'rent' ? 'Aluguel Pago' : 'Parcela Paga'}</th>
+                <th className="px-6 py-4 font-medium whitespace-nowrap">{activeTab === 'rent' ? 'Aluguel' : 'Parcela'}</th>
+                <th className="px-6 py-4 font-medium whitespace-nowrap">Condomínio</th>
                 <th className="px-6 py-4 font-medium whitespace-nowrap">Juros ao Banco</th>
                 <th className="px-6 py-4 font-medium whitespace-nowrap">Dívida Restante</th>
                 <th className="px-6 py-4 font-medium whitespace-nowrap">Saldo Inicial Conta</th>
@@ -57,7 +60,8 @@ export default function EvolutionTable({ results }) {
               {currentData.map((row, idx) => (
                 <tr key={idx} className="hover:bg-white/[0.02] transition-colors">
                   <td className="px-6 py-4 text-gray-300 font-medium">{row.month}</td>
-                  <td className="px-6 py-4 text-red-400/80">{formatCurrency(row.housingCost)}</td>
+                  <td className="px-6 py-4 text-red-400/80">{formatCurrency(row.baseHousingCost)}</td>
+                  <td className="px-6 py-4 text-red-400/80">{formatCurrency(row.condoCost)}</td>
                   <td className="px-6 py-4">{formatCurrency(row.interestToBank)}</td>
                   <td className="px-6 py-4">{formatCurrency(row.debtBalance)}</td>
                   
