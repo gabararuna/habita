@@ -42,7 +42,7 @@ export default function CalculatorForm({ onCalculate }) {
     });
   };
 
-  const inputClass = "w-full bg-white/5 border border-white/10 rounded-md px-3 py-2 text-sm text-white font-light focus:outline-none focus:border-[#00bfa5]/40 transition-colors mt-1.5 focus:bg-white/10";
+  const inputClass = "w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white font-light outline-none focus:border-[#00bfa5] focus:bg-white/[0.08] focus:shadow-[0_0_0_3px_rgba(0,191,165,0.1)] transition-all duration-300 mt-1.5";
   const labelClass = "text-xs text-gray-400 font-light flex items-center justify-between tracking-wide";
 
   return (
@@ -146,23 +146,23 @@ export default function CalculatorForm({ onCalculate }) {
         {/* Coluna Direita — Financiamento & Investimento */}
         <div className="flex flex-col space-y-4">
           <h3 className="text-lg font-light text-white border-b border-white/10 pb-3 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-white/60"></span>
             Financiamento & Investimento
           </h3>
 
           {/* Toggle SAC / PRICE movido para dentro da seção */}
-          <div className="flex items-center gap-1.5 bg-black/30 p-1.5 rounded-lg border border-white/5">
+          <div className="flex items-center gap-1.5 bg-black/30 p-1.5 rounded-xl border border-white/10">
             <button
               type="button"
               onClick={() => setMethod('SAC')}
-              className={`flex-1 py-2 rounded-md text-sm transition-all ${method === 'SAC' ? 'bg-blue-500/20 text-blue-400 font-medium' : 'text-gray-400 font-light hover:text-white hover:bg-white/5'}`}
+              className={`flex-1 py-2 rounded-md text-sm transition-all ${method === 'SAC' ? 'bg-white/15 text-white font-medium' : 'text-gray-400 font-light hover:text-white hover:bg-white/5'}`}
             >
               Amortização SAC
             </button>
             <button
               type="button"
               onClick={() => setMethod('PRICE')}
-              className={`flex-1 py-2 rounded-md text-sm transition-all ${method === 'PRICE' ? 'bg-blue-500/20 text-blue-400 font-medium' : 'text-gray-400 font-light hover:text-white hover:bg-white/5'}`}
+              className={`flex-1 py-2 rounded-md text-sm transition-all ${method === 'PRICE' ? 'bg-white/15 text-white font-medium' : 'text-gray-400 font-light hover:text-white hover:bg-white/5'}`}
             >
               Tabela PRICE
             </button>
@@ -187,7 +187,7 @@ export default function CalculatorForm({ onCalculate }) {
             <div>
               <label className={labelClass}>
                 <span>Custos Extras (R$)</span>
-                <span className="text-[10px] text-blue-400/80" title="ITBI, Cartório, Corretor (~4%)">Auto: 4%</span>
+                <span className="text-[10px] text-white/40" title="ITBI, Cartório, Corretor (~4%)">Auto: 4%</span>
               </label>
               <CurrencyInput
                 id="additionalCosts"
@@ -212,7 +212,7 @@ export default function CalculatorForm({ onCalculate }) {
           <div>
             <label className={labelClass}>
               <span>Taxa Financiamento (% a.a.)</span>
-              <span className="text-[10px] text-blue-400/80" title="Média SBPE Últimos 5 Anos">Mercado 5A</span>
+              <span className="text-[10px] text-white/40" title="Média SBPE Últimos 5 Anos">Mercado 5A</span>
             </label>
             <input type="number" step="0.01" className={inputClass} value={annualInterestRate} onChange={e => setAnnualInterestRate(e.target.value)} />
           </div>
@@ -220,7 +220,7 @@ export default function CalculatorForm({ onCalculate }) {
           <div>
             <label className={labelClass}>
               <span>Rendimento Carteira (% a.a.)</span>
-              <span className="text-[10px] text-blue-400/80" title="Selic / CDI Média 5 Anos">Selic 5A</span>
+              <span className="text-[10px] text-white/40" title="Selic / CDI Média 5 Anos">Selic 5A</span>
             </label>
             <input type="number" step="0.01" className={inputClass} value={annualInvestmentRate} onChange={e => setAnnualInvestmentRate(e.target.value)} />
           </div>

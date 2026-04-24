@@ -31,7 +31,7 @@ export default function EvolutionTable({ results }) {
           </button>
           <button 
             onClick={() => setActiveTab('buy')}
-            className={`px-6 py-2 rounded-md text-sm transition-all ${activeTab === 'buy' ? 'bg-blue-500/20 text-blue-400 font-medium' : 'text-gray-400 hover:text-white'}`}
+            className={`px-6 py-2 rounded-md text-sm transition-all ${activeTab === 'buy' ? 'bg-white/15 text-white font-medium' : 'text-gray-400 hover:text-white'}`}
           >
             Tabela de Financiamento
           </button>
@@ -68,7 +68,7 @@ export default function EvolutionTable({ results }) {
                   <td className="px-6 py-4">{formatCurrency(row.initialAccountBalance)}</td>
                   <td className="px-6 py-4 text-gray-300">+{formatCurrency(row.aporte)}</td>
                   <td className="px-6 py-4 text-yellow-400/80">+{formatCurrency(row.yield)}</td>
-                  <td className={`px-6 py-4 ${activeTab === 'rent' ? 'text-[#00bfa5]' : 'text-blue-400'}`}>
+                  <td className={`px-6 py-4 ${activeTab === 'rent' ? 'text-[#00bfa5]' : 'text-white/70'}`}>
                     {formatCurrency(row.finalAccountBalance)}
                   </td>
                   

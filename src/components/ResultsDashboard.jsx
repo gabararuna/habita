@@ -25,10 +25,10 @@ export default function ResultsDashboard({ results }) {
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-700 mt-10">
       
       {/* Resumo do vencedor */}
-      <div className={`p-6 rounded-2xl border backdrop-blur-md shadow-2xl ${isRentBetter ? 'bg-[#00bfa5]/5 border-[#00bfa5]/20' : 'bg-blue-500/5 border-blue-500/20'}`}>
+      <div className={`p-6 rounded-2xl border backdrop-blur-md shadow-2xl ${isRentBetter ? 'bg-[#00bfa5]/5 border-[#00bfa5]/20' : 'bg-white/5 border-white/15'}`}>
         <div className="flex items-start md:items-center flex-col md:flex-row gap-5">
-          <div className={`p-3 rounded-full ${isRentBetter ? 'bg-[#00bfa5]/10' : 'bg-blue-500/10'}`}>
-            <CheckCircle2 className={`w-8 h-8 ${isRentBetter ? 'text-[#00bfa5]' : 'text-blue-500'} shrink-0`} strokeWidth={1.5} />
+          <div className={`p-3 rounded-full ${isRentBetter ? 'bg-[#00bfa5]/10' : 'bg-white/5'}`}>
+            <CheckCircle2 className={`w-8 h-8 ${isRentBetter ? 'text-[#00bfa5]' : 'text-white/80'} shrink-0`} strokeWidth={1.5} />
           </div>
           <div>
             <h2 className="text-xl md:text-2xl font-light tracking-tight text-white mb-1">
@@ -95,13 +95,13 @@ export default function ResultsDashboard({ results }) {
         </div>
 
         {/* Card Comprar */}
-        <div className={`bg-white/5 backdrop-blur-xl p-8 rounded-2xl relative overflow-hidden group border ${!isRentBetter ? 'border-blue-500/40 shadow-[0_0_20px_rgba(59,130,246,0.1)]' : 'border-white/5'}`}>
+        <div className={`bg-white/5 backdrop-blur-xl p-8 rounded-2xl relative overflow-hidden group border ${!isRentBetter ? 'border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.05)]' : 'border-white/5'}`}>
           <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
-            <Home className="w-40 h-40 text-blue-500" strokeWidth={1} />
+            <Home className="w-40 h-40 text-white/80" strokeWidth={1} />
           </div>
           <h3 className="text-xl font-light text-gray-200 mb-8 flex items-center gap-3">
-            <div className={`w-2.5 h-2.5 rounded-full ${!isRentBetter ? 'animate-pulse bg-blue-500' : 'bg-blue-500/40'}`}></div>
-            <span className="text-blue-400">Cenário: Financiar</span>
+            <div className={`w-2.5 h-2.5 rounded-full ${!isRentBetter ? 'bg-white/30' : 'bg-white/30'}`}></div>
+            <span className="text-white/70">Cenário: Financiar</span>
           </h3>
           
           <div className="space-y-6">
@@ -134,7 +134,7 @@ export default function ResultsDashboard({ results }) {
               </div>
               <div className="flex justify-between py-1 border-b border-white/5 pb-2">
                 <span className="text-white text-sm font-bold" title="Soma total do seu império (Dinheiro + Imóvel)">Patrimônio Total (=)</span>
-                <span className="font-bold text-blue-400 text-sm text-right">{formatCurrency(buyFinalWealth)}</span>
+                <span className="font-bold text-white/70 text-sm text-right">{formatCurrency(buyFinalWealth)}</span>
               </div>
 
               {/* O Desembolso é apenas comparativo */}
