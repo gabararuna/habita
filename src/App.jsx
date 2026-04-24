@@ -29,7 +29,7 @@ function App() {
 
       <div className="max-w-[1200px] mx-auto w-full relative z-10 px-4 pt-12 pb-32">
         <header className="text-center mb-12 relative z-20">
-          <a filter="brightness(1.2)" href="https://numera.gabrielararuna.com/" target="_blank" rel="noopener noreferrer" className="inline-block mb-6 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-[#00bfa5] text-[10px] sm:text-xs font-semibold tracking-widest uppercase transition-all duration-300 hover:bg-white/10 hover:border-[#00bfa5]/40 hover:shadow-[0_0_20px_rgba(0,191,165,0.25)] hover:-translate-y-0.5 active:scale-95 cursor-pointer">
+          <a filter="brightness(1.2)" href="https://www.gruponumera.com/" target="_blank" rel="noopener noreferrer" className="inline-block mb-6 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-[#00bfa5] text-[10px] sm:text-xs font-semibold tracking-widest uppercase transition-all duration-300 hover:bg-white/10 hover:border-[#00bfa5]/40 hover:shadow-[0_0_20px_rgba(0,191,165,0.25)] hover:-translate-y-0.5 active:scale-95 cursor-pointer">
             Desenvolvido por Numera
           </a>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-light mb-4 tracking-tight leading-tight">
