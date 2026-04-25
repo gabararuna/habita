@@ -40,6 +40,15 @@ body {
   animation: shimmer 8s linear infinite;
 }
 
+.shimmer-teal {
+  background: linear-gradient(90deg, #00BFA5 0%, #00E6C7 25%, #00BFA5 50%, #00E6C7 75%, #00BFA5 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 6s linear infinite;
+}
+
 .shimmer-logo {
   background: linear-gradient(90deg, #ffffff 0%, #a0a0a0 25%, #ffffff 50%, #a0a0a0 75%, #ffffff 100%);
   background-size: 200% auto;
@@ -139,6 +148,28 @@ body {
 
 .glass-btn:hover::before {
   left: 100%;
+}
+
+.glass-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.glass-btn-primary {
+  background: linear-gradient(135deg, rgba(0, 191, 165, 0.25) 0%, rgba(0, 191, 165, 0.1) 100%);
+  border-color: rgba(0, 191, 165, 0.4);
+  box-shadow:
+    0 4px 24px rgba(0, 191, 165, 0.2),
+    inset 0 1px 0 rgba(0, 191, 165, 0.2);
+}
+
+.glass-btn-primary:hover {
+  background: linear-gradient(135deg, rgba(0, 191, 165, 0.35) 0%, rgba(0, 191, 165, 0.2) 100%);
+  box-shadow:
+    0 8px 40px rgba(0, 191, 165, 0.35),
+    inset 0 1px 0 rgba(0, 191, 165, 0.3),
+    0 0 80px rgba(0, 191, 165, 0.15);
 }
 
 .glass-card {
